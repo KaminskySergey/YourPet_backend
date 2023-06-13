@@ -4,8 +4,7 @@ const { auth } = require('../../controllers')
 
 const { authCheck } = require('../../middlewares/authCheck')
 
-console.log(auth, 'authhhhh')
-console.log(authCheck, 'vvvv')
+
 
 
 const router = express.Router()
