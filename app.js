@@ -3,7 +3,7 @@ const logger = require('morgan')
 const cors = require('cors')
 
 
-// const productsRouter = require('./routes/api/products')
+const petsRouter = require('./routes/api/pet')
 // const shopsRouter = require('./routes/api/shops')
 // const ordersRouter = require('./routes/api/orders')
 const authRouter = require('./routes/api/user')
@@ -18,7 +18,7 @@ app.use(express.json())
 
 
 app.use('/api/auth', authRouter)
-// app.use('/api/', productsRouter)
+app.use('/api/pets', petsRouter)
 // app.use('/api/shops',  shopsRouter)
 // app.use('/api/order',  ordersRouter)
 
