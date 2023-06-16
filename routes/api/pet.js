@@ -1,18 +1,18 @@
 const express = require('express')
 
-const { pets } = require('../../controllers')
+const { pet } = require('../../controllers')
 
-// const { authCheck } = require('../../middlewares/authCheck')
+const { authCheck } = require('../../middlewares/authCheck')
 
-console.log(pets, 'petsssss')
+console.log(pet, 'petsssss')
 
 
 const router = express.Router()
 
 
 
-router.get('/', pets.allPets)
-router.post('/', pets.createPets)
-router.delete('/:petId', pets.createPets)
+router.get('/', pet.allPets)
+router.post('/', authCheck, pet.createPets)
+router.delete('/:petId', pet.createPets)
 
 module.exports = router

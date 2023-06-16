@@ -6,7 +6,8 @@ const cors = require('cors')
 const petsRouter = require('./routes/api/pet')
 // const shopsRouter = require('./routes/api/shops')
 // const ordersRouter = require('./routes/api/orders')
-const authRouter = require('./routes/api/user')
+const authRouter = require('./routes/api/auth')
+const userRouter = require('./routes/api/user')
 
 const app = express()
 
@@ -19,7 +20,7 @@ app.use(express.json())
 
 app.use('/api/auth', authRouter)
 app.use('/api/pets', petsRouter)
-// app.use('/api/shops',  shopsRouter)
+app.use('/api/user',  userRouter)
 // app.use('/api/order',  ordersRouter)
 
 app.use((req, res) => {

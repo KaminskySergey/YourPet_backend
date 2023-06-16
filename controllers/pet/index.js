@@ -1,12 +1,12 @@
 const allPets = require('./allPets')
 const createPets = require('./createPets')
-// const current = require('./current')
+const updatePets = require('./updatePets')
 // const logout = require('./logout')
 
 
 module.exports = {
     allPets,
     createPets,
-    // current,
+    updatePets,
     // logout,
 }

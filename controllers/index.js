@@ -1,7 +1,9 @@
 const auth = require('./auth')
-const pets = require('./pets')
+const pet = require('./pet')
+const user = require('./user')
 
 module.exports = {
     auth,
-    pets,
+    pet,
+    user,
 }
