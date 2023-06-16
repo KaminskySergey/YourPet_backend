@@ -5,10 +5,6 @@ const petSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    phone: {
-        type: String,
-        required: true,
-    },
 name: {
     type: String,
     required: true,
@@ -16,7 +12,7 @@ name: {
 birth: {
     type: String,
 },
-lifetime: {
+age: {
     type: String,
     required: true,
 },
@@ -36,18 +32,14 @@ status: {
 },
 sex: {
     type: String,
-    enum: ["Female", "Male"],
+    enum: ["Female", "Male", "not specified"],
     default: 'not specified',
 },
 image: {
-    type: String,
+    type: [String],
 },
 location: {
     type: String,
-    required: true,
-},
-price: {
-    type: Number,
     required: true,
 },
 comments: {
