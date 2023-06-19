@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
-  app.listen(4000, () => {
+  app.listen(3000, () => {
     console.log("Database connection successful")
   })
 
