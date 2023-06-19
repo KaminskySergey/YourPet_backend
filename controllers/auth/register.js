@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 
 const register = async (req, res, next) => {
 
-    const {name, password, email, phone} = req.body;
+    const {password, email} = req.body;
     
     const user = await User.findOne({email})
     
@@ -14,7 +14,7 @@ const register = async (req, res, next) => {
         
         const hashPassword = await bcrypt.hashSync(password, bcrypt.genSaltSync(15))
         
-        const newUser = await User.create({name, password: hashPassword, email, phone })
+        const newUser = await User.create({password: hashPassword, email })
     
         res.status(201).json({ message: "Register User", status: "success",  newUser})
     }
