@@ -1,12 +1,11 @@
-const allPets = require('./allPets')
-const createPets = require('./createPets')
-const updatePets = require('./updatePets')
-// const logout = require('./logout')
-
+const allPets = require("./allPets");
+const createPets = require("./createPets");
+const updatePets = require("./updatePets");
+const deletePets = require("./deletePets");
 
 module.exports = {
-    allPets,
-    createPets,
-    updatePets,
-    // logout,
-}
+  allPets,
+  createPets,
+  updatePets,
+  deletePets,
+};

@@ -1,39 +1,34 @@
-const { User } = require('../models/User')
-const jwt = require('jsonwebtoken');
+const { User } = require("../models/User");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const { catchAsync } = require("../services");
+const { Unauthorized } = require("http-errors");
 
-const {SECRET_KEY} = process.env;
+const { SECRET_KEY } = process.env;
 
-const authCheck = async (req, res, next) => {
+const authCheck = catchAsync(async (req, res, next) => {
+  const { authorization = "" } = req.headers;
+  const [bearer, token] = authorization.split(" ");
 
+  if (bearer !== "Bearer") {
+    // return res.status(401).json({ message: "Not authorized" });
+    next(Unauthorized("Not authorized"));
+  }
 
-    const {authorization = ""} = req.headers;
-    const [bearer, token] = authorization.split(" ")
+  const { id } = jwt.verify(token, SECRET_KEY);
 
-try {
-    if(bearer !== "Bearer"){
-        return res.status(401).json({ message: "Not authorized" })
-    }
-    
-    const {id} = jwt.verify(token, SECRET_KEY)
+  const user = await User.findById(id).select(
+    "-createdAt -updatedAt -password"
+  );
 
-    const user = await User.findById(id)
-
-    if(!user || !user.token){
-        return res.status(401).json({ message: "Not authorized" })
-    }
-    req.user = user
-    next()
-} catch (error) {
-    if(error){
-        return res.status(401).json({ message: "Invalid Sugnature" })
-    }
-    next(error)
-}
-
-}
-
+  if (!user || !user.token) {
+    // return res.status(401).json({ message: "Not authorized" });
+    next(Unauthorized("Not authorized"));
+  }
+  req.user = user;
+  next();
+});
 
 module.exports = {
-    authCheck,
-}
+  authCheck,
+};
