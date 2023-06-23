@@ -1,16 +1,17 @@
 const { User } = require("../../models/User");
 
 const updateUser = async (req, res, next) => {
-const {_id} = req.user;
+  const { _id } = req.user;
 
-const updateUser = await User.findByIdAndUpdate(_id, req.body, {new: true})
+  const updateUser = await User.findByIdAndUpdate(_id, req.body, {
+    new: true,
+  }).select("-password -updatedAt -createdAt -token");
 
-res.json({
-    status: 'succes',
+  res.json({
+    status: "succes",
     code: 200,
-    updateUser
-}).select("-password -updatedAt -createdAt -token");
-}
+    updateUser,
+  });
+};
 
-
-module.exports = updateUser
+module.exports = updateUser;

@@ -1,10 +1,11 @@
-const { User } = require('../../models/User')
+const { User } = require("../../models/User");
+const { catchAsync } = require("../../services");
 
-const logout = async (req, res) => {
-const {_id} = req.user;
+const logout = catchAsync(async (req, res) => {
+  const { _id } = req.user;
 
-await User.findByIdAndUpdate(_id, {token: null})
-res.status(204).json()
-}
+  await User.findByIdAndUpdate(_id, { token: null });
+  res.status(204).json();
+});
 
-module.exports = logout
+module.exports = logout;
