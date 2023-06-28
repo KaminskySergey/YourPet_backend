@@ -36,7 +36,7 @@ sex: {
     default: 'not specified',
 },
 image: {
-    type: [String],
+    type: String,
 },
 location: {
     type: String,
