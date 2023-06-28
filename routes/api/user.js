@@ -1,18 +1,9 @@
-const express = require('express')
+const express = require("express");
+const { user } = require("../../controllers");
+const { authCheck } = require("../../middlewares/authCheck");
 
-const { user } = require('../../controllers')
+const router = express.Router();
 
-const { authCheck } = require('../../middlewares/authCheck')
+router.patch("/update", authCheck, user.updateUser);
 
-
-
-
-const router = express.Router()
-
-
-
-
-
-router.patch('/update', authCheck, user.updateUser)
-
-module.exports = router
+module.exports = router;
