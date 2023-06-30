@@ -2,9 +2,9 @@ const { Pet } = require("../../models/Pet");
 
 
 const allPetsById = async (req, res, next) => {
-const {userId} = req.params;
+const {_id} = req.user;
 
-const allPets = await Pet.find({user: userId})
+const allPets = await Pet.find({user: _id})
     res.json({
         status: "success",
         code: 200,
